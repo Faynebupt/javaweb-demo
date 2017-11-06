@@ -9,6 +9,7 @@
     <modules>
         <module>socket-demo</module>
         <module>sevlet-demo</module>
+        <module>springboot-demo</module>
         <module>spring-demo</module>
     </modules>
     <packaging>pom</packaging>
