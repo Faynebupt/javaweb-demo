@@ -28,10 +28,12 @@ import java.util.Map;
 public class Container {
 
     public static void main(String[] args) throws IOException{
+        // 创建容器
         Container container = new Container();
+        // 注册 servlet - url 映射关系。注：实际应该通过读取web.xml中的内容进行。
         container.register(new SimpleServlet(), "/simple");
         container.register(new DemoServlet(), "/demo");
-
+        // 启动服务
         container.start();
     }
 

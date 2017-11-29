@@ -67,7 +67,7 @@ public class SimpleServlet implements Servlet {
                                "Content-Type: text/html; charset=utf-8\n"+
                                "\n"+
                                html;
-        out.write(html.getBytes("utf-8"));
+        out.write(html.getBytes("utf-8"));//thymeleaf
         // out.write(httpmsg.getBytes("utf-8"));
         out.flush();
         out.close();

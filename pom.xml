@@ -11,6 +11,7 @@
         <module>sevlet-demo</module>
         <module>springboot-demo</module>
         <module>spring-demo</module>
+        <module>servlet3-demo</module>
     </modules>
     <packaging>pom</packaging>
 
