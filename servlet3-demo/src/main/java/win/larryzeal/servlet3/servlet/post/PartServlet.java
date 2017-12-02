@@ -32,10 +32,14 @@ import java.io.PrintWriter;
  *
  * </pre>
  * <p>
+ * Spring提供了一个Multipart的解析器：MultipartResolver，因此在@Configuration类中添加一个Bean，
+ * 有两种选择CommonsMultipartResolver和StandardServletMultipartResolver，分别基于Commons File Upload和Servlet 3.0标准API；
  * <p>
  * Created by 张少昆 on 2017/12/3.
  */
-@MultipartConfig
+@MultipartConfig( fileSizeThreshold = 5_242_880,
+                  maxFileSize = 20_971_520L,
+                  maxRequestSize = 41_943_040L )
 @WebServlet( "/part" )
 public class PartServlet extends HttpServlet {
 

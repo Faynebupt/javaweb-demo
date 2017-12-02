@@ -36,3 +36,5 @@
     5. RequestDispatcherForwardServlet 测试req.getRequestDispatcher("").forward
     6. RequestDispatcherIncludeServlet 测试req.getRequestDispatcher("").include
     7. RequestDispatcherTargetServlet 用于5和6的测试！注意，不能返回完整的<html>，否则include可能报错。
+    8. PostServlet 用于测试post form请求的参数获取。
+    9. PartServlet 用于测试文件上传。Servlet3很好。
