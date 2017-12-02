@@ -1,6 +1,4 @@
-package win.larryzeal.servlet3.servlet;
-
-import win.larryzeal.servlet3.Consts;
+package win.larryzeal.servlet3.servlet.dispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,18 +18,12 @@ import java.io.PrintWriter;
  * <p>
  * Created by 张少昆 on 2017/11/29.
  */
-@WebServlet( urlPatterns = "/dispatcher/include" )
-public class RequestDispatcherIncludeServlet extends HttpServlet {
+@WebServlet( urlPatterns = "/dispatcher/target" )
+public class RequestDispatcherTargetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        Object attribute = req.getAttribute(Consts.KEY);
-        System.out.println(Consts.KEY + ": " + String.valueOf(attribute));
-
         PrintWriter writer = resp.getWriter();
-        writer.println("forward或include 之前");
-        writer.flush();
-        req.getRequestDispatcher("/dispatcher/target").include(req, resp); //包含 呀呀呀 是把其他的包含进来，不会修改原有的req、resp
-        writer.println("forward或include 之后");
+        writer.println("from target servlet<br/>");
         writer.flush();
     }
 }

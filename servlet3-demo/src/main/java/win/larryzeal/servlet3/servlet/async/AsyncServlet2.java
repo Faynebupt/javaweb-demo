@@ -1,4 +1,4 @@
-package win.larryzeal.servlet3.servlet;
+package win.larryzeal.servlet3.servlet.async;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
@@ -29,6 +29,7 @@ public class AsyncServlet2 extends HttpServlet {
         // req.getRequestDispatcher("").include(req, resp);
 
         AsyncContext asyncContext = req.startAsync();  //Servlet 3.0 还为异步处理提供了一个监听器，使用 AsyncListener 接口表示
+        // AsyncContext asyncContext1 = req.startAsync(req, resp);//奇怪，这个和上面的什么区别？？？
         AsyncServlet.asyncProcess(asyncContext, false);
         //TODO 这个到底干啥的？
         // 而且，前提是不能在异步中complete，否则报错！是IllegalStateException！

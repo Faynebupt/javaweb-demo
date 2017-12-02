@@ -1,4 +1,4 @@
-package win.larryzeal.servlet3.servlet;
+package win.larryzeal.servlet3.servlet.dispatcher;
 
 import win.larryzeal.servlet3.Consts;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 测试request dispatcher到底是什么。
@@ -19,21 +20,18 @@ import java.io.IOException;
  * <p>
  * Created by 张少昆 on 2017/11/29.
  */
-@WebServlet( urlPatterns = "/dispatcher/forward" )
-public class RequestDispatcherForwardServlet extends HttpServlet {
+@WebServlet( urlPatterns = "/dispatcher/include" )
+public class RequestDispatcherIncludeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        //        super.doGet(req, resp);
         Object attribute = req.getAttribute(Consts.KEY);
         System.out.println(Consts.KEY + ": " + String.valueOf(attribute));
 
-        //如果之前或者之后输出了内容，会出错！
-        // PrintWriter writer = resp.getWriter();
-        // writer.println("forward或include 之前");
-        // writer.flush();
-        req.getRequestDispatcher("/dispatcher/target").forward(req, resp); //转发。本servlet的所有输出都么有啦！！！
-        // req.getRequestDispatcher("/dispatcher-b").include(req, resp); //包含 呀呀呀 是把其他的包含进来，不会修改原有的req、resp
-        // writer.println("forward或include 之后");
-        // writer.flush();
+        PrintWriter writer = resp.getWriter();
+        writer.println("forward或include 之前");
+        writer.flush();
+        req.getRequestDispatcher("/dispatcher/target").include(req, resp); //包含 呀呀呀 是把其他的包含进来，不会修改原有的req、resp
+        writer.println("forward或include 之后");
+        writer.flush();
     }
 }
