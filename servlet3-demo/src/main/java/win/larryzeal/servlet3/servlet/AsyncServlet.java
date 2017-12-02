@@ -32,14 +32,19 @@ public class AsyncServlet extends HttpServlet {
         writer.flush();
 
         AsyncContext asyncContext = req.startAsync();  //Servlet 3.0 还为异步处理提供了一个监听器，使用 AsyncListener 接口表示
-        asyncProcess(asyncContext);
+        AsyncServlet.asyncProcess(asyncContext, true);
 
         writer.println("结束Servlet的时间：" + LocalDateTime.now() + ".<br/>");
         writer.flush();
     }
 
-    // 模拟异步处理 - 注意，这里会自行返回响应！！！
-    public void asyncProcess(AsyncContext asyncContext){
+    /**
+     * 模拟异步处理 - 注意，这里会自行返回响应！！！
+     *
+     * @param asyncContext 异步上下文
+     * @param doComplete   异步线程中是否执行asyncContext.complete()
+     */
+    public static void asyncProcess(AsyncContext asyncContext, boolean doComplete){
         new Thread(() -> {
             try{
                 PrintWriter writer = asyncContext.getResponse().getWriter();
@@ -51,7 +56,9 @@ public class AsyncServlet extends HttpServlet {
             } catch(InterruptedException e){
                 e.printStackTrace();
             } finally{
-                asyncContext.complete();
+                if(doComplete){
+                    asyncContext.complete(); //TODO 已经完成了，就不能dispatch
+                }
             }
         }).start();
     }

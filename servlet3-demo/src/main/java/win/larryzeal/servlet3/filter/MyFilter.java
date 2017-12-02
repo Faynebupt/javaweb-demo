@@ -2,6 +2,7 @@ package win.larryzeal.servlet3.filter;
 
 import win.larryzeal.servlet3.Consts;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,7 +16,9 @@ import java.time.LocalDateTime;
 /**
  * Created by 张少昆 on 2017/11/29.
  */
-@WebFilter( urlPatterns = "/*" ,asyncSupported = true) // 不是/**？  还可以使用servlet！    TODO serlvet是async，filter也要是async的才行
+// 不是/**？  还可以使用servlet！    TODO serlvet是async，filter也要是async的才行
+//分发类型：默认request，就是说其他的如forward、async、include、error都不拦截。
+@WebFilter( urlPatterns = "/*", asyncSupported = true, dispatcherTypes = {DispatcherType.REQUEST} )
 public class MyFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException{
