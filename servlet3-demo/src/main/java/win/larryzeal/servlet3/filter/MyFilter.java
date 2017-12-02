@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 /**
  * Created by 张少昆 on 2017/11/29.
  */
-@WebFilter( urlPatterns = "/*" ) // 不是/**？  还可以使用servlet！
+@WebFilter( urlPatterns = "/*" ,asyncSupported = true) // 不是/**？  还可以使用servlet！    TODO serlvet是async，filter也要是async的才行
 public class MyFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException{
