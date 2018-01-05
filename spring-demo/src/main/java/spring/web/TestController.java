@@ -3,6 +3,7 @@ package spring.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import spring.aspect.Perms;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class TestController {
 
     @RequestMapping( value = "/a" )
     @ResponseBody
+    @Perms(Perms.read)
     public Map a(){
         HashMap<String, String> map = new HashMap<>();
         map.put("key1", "value1");
